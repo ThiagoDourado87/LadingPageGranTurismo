@@ -1,26 +1,34 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
 const cleanCSS = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 
-// Tarefa para compilar e otimizar o CSS
-gulp.task('styles', function () {
-  return gulp
-    .src('src/scss/styles.scss') // Caminho para o arquivo principal do SASS/SCSS
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(cleanCSS())
-    .pipe(gulp.dest('dist/css')); // Pasta de destino do CSS otimizado
+
+// Tarefa para compilar os arquivos SCSS em CSS
+gulp.task('sass', function () {
+  return gulp.src('src/scss/**/*.scss')
+    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(autoprefixer({ cascade: false }))
+    .pipe(gulp.dest('dist/css'))
+    .pipe(browserSync.stream()); // Recarrega o navegador após a compilação
 });
 
-// Tarefa para otimizar as imagens
-gulp.task('images', function () {
-  return gulp
-    .src('src/img/*') // Caminho para as imagens do filme
-    .pipe(imagemin())
-    .pipe(gulp.dest('dist/img')); // Pasta de destino das imagens otimizadas
+// Tarefa para iniciar o servidor do BrowserSync e assistir os arquivos
+gulp.task('dev', function () {
+  browserSync.init({
+    server: {
+      baseDir: './'
+    }
+  });
+
+  // Assista os arquivos SCSS e recarregue o navegador quando houver alterações
+  gulp.watch('src/scss/**/*.scss', gulp.series('sass'));
+
+  // Assista os arquivos HTML e recarregue o navegador quando houver alterações
+  gulp.watch('*.html').on('change', browserSync.reload);
 });
 
-// Tarefa para executar todas as tarefas
-gulp.task('default', gulp.parallel('styles', 'images'));
+// Tarefa padrão (gulp) para compilar SCSS e iniciar o servidor de desenvolvimento
+gulp.task('default', gulp.series('sass', 'dev'));
