@@ -1,0 +1,22 @@
+/* header.scss */
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+        header img {
+            max-width: 300px; 
+        }
+        
+        h1 {
+            font-size: 32px;
+        }
+    

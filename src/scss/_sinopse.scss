@@ -1,0 +1,21 @@
+/* sinopse.scss */
+
+.sinopse {
+    padding: 20px;
+  
+    /* Estilos para o título "Sinopse" */
+    h2 {
+      font-size: 30px; /* Tamanho maior para destacar o título */
+      margin-bottom: 20px;
+      color: #fff; /* Definir a cor do título para branco */
+      text-transform: uppercase; /* Transformar o texto para maiúsculas */
+      letter-spacing: 1px; /* Aumentar o espaçamento entre as letras */
+      font-weight: bold; /* Deixar o título em negrito */
+    }
+  
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+  

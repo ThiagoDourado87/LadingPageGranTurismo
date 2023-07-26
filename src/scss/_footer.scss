@@ -1,0 +1,31 @@
+/* Estilos para o rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os ícones */
+    font-size: 24px; /* Tamanho dos ícones */
+    justify-content: center;
+  
+    a {
+      color: #fff; /* Definir a cor dos ícones como branco */
+      background-color: #333; /* Definir uma cor de fundo para os ícones (opcional) */
+      width: 40px; /* Definir a largura dos ícones (opcional, ajuste conforme necessário) */
+      height: 40px; /* Definir a altura dos ícones (opcional, ajuste conforme necessário) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+  
+    a:hover {
+      background-color: #0076c5; /* Altere a cor de fundo em hover conforme desejado */
+    }
+  }
+  
